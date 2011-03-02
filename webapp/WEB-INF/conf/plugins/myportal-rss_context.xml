@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <!-- Widget handler -->
+    <bean id="myportal-rss.widgetHandlerRSS"  class="fr.paris.lutece.plugins.myportal.modules.rss.service.RssWidgetHandler" />
+
+
+</beans>
