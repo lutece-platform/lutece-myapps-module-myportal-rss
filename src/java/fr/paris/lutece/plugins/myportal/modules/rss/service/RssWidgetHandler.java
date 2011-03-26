@@ -33,8 +33,10 @@
  */
 package fr.paris.lutece.plugins.myportal.modules.rss.service;
 
+import fr.paris.lutece.plugins.myportal.business.Widget;
 import fr.paris.lutece.plugins.myportal.service.handler.WidgetHandler;
 import fr.paris.lutece.portal.service.security.LuteceUser;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * RSS Widget Handler
@@ -64,9 +66,10 @@ public class RssWidgetHandler implements WidgetHandler
     /**
      * {@inheritDoc }
      */
-    public String renderWidget(String strWidgetData, LuteceUser user)
+    public String renderWidget( Widget widget, LuteceUser user, HttpServletRequest request)
     {
-        return RssWidgetService.instance().getRssFeed( strWidgetData );
+        return RssWidgetService.instance().getRssFeed( widget.getConfigData() );
     }
+
 
 }
