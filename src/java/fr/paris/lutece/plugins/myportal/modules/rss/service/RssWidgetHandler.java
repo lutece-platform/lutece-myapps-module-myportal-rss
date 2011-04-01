@@ -71,5 +71,11 @@ public class RssWidgetHandler implements WidgetHandler
         return RssWidgetService.instance().getRssFeed( widget.getConfigData() );
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
+	public boolean isCustomizable(  )
+	{
+		return false;
+	}
 }
