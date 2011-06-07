@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<plug-in>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><plug-in>
     <name>myportal-rss</name>
     <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
     <version>1.0.0</version>
-    <documentation></documentation>
-    <installation></installation>
-    <changes></changes>
-    <user-guide></user-guide>
+    <documentation/>
+    <installation/>
+    <changes/>
+    <user-guide/>
     <description>module.myportal.rss.plugin.description</description>
     <provider>module.myportal.rss.plugin.provider</provider>
     <provider-url>http://www.lutece.paris.fr</provider-url>
@@ -15,4 +14,3 @@
     <db-pool-required>0</db-pool-required>
 
 </plug-in>
-
