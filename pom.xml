@@ -44,7 +44,11 @@
             <version>[2.2.6,4.0.0-SNAPSHOT)</version>
         </dependency>
     </dependencies>
-    
+    <properties>
+        <componentName>myportal-rss</componentName>
+        <jiraProjectName>MYPORTALRSS</jiraProjectName>
+        <jiraComponentId>10148</jiraComponentId>
+    </properties>    
     <scm>
         <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/cms/module-myportal-rss</connection>
         <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/cms/module-myportal-rss</developerConnection>
