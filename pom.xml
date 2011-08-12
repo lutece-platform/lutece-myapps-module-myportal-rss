@@ -47,7 +47,7 @@
     <properties>
         <componentName>myportal-rss</componentName>
         <jiraProjectName>MYPORTALRSS</jiraProjectName>
-        <jiraComponentId>10148</jiraComponentId>
+        <jiraComponentId>10504</jiraComponentId>
     </properties>    
     <scm>
         <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/cms/module-myportal-rss</connection>
