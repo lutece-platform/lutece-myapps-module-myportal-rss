@@ -1,0 +1,17 @@
+<#include "managerss_tabs.html" />
+<@tabs2 tab="category" />
+
+<@box>
+	<@boxHeader title='#i18n{module.myportal.rss.modify_category.title}' />
+	<@boxBody>
+    <@tform class="form-horizontal" method="post" name="modify_category" action="jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp">
+			<@messages errors=errors />
+			<input type="hidden" id="id" name="id" value="${category.id}"/>
+			
+				<@formGroup labelKey='#i18n{module.myportal.rss.modify_category.labelTitle}' helpKey='#i18n{module.myportal.rss.modify_category.labelTitle.help}' mandatory=true>
+					<@input type='text' name='title' value='${category.title}' />
+				</@formGroup>
+        <@actionButtons button1Name="action_modifyCategory" button2Name="view_manageCategory"/>
+    </@tform>
+	</@boxBody>
+</@box>

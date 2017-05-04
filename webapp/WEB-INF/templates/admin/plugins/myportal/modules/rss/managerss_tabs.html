@@ -1,0 +1,13 @@
+<#macro tabs2 tab >
+<@tabs>
+	<@listTabs>
+			<li <#if tab="category">class="active"</#if>>
+				<a href="jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp">#i18n{module.myportal.rss.manage_categorys.pageTitle}</a>
+			</li>
+			<li <#if tab="rssconf">class="active"</#if>>
+				<a href="jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp">#i18n{module.myportal.rss.manage_rssconfs.pageTitle}</a>
+			</li>
+	</@listTabs>
+</@tabs>
+
+</#macro>

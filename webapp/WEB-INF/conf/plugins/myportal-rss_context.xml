@@ -4,6 +4,10 @@
 
     <!-- Widget handler -->
     <bean id="myportal-rss.widgetHandlerRSS"  class="fr.paris.lutece.plugins.myportal.modules.rss.service.RssWidgetHandler" />
-
+    <bean id="myportal-rss.rssAdvancedWidget"  class="fr.paris.lutece.plugins.myportal.modules.rss.service.RssAdvancedWidgetHandler" />
+    
+    
+        <bean id="myportal-rss.rssConfDAO"    class="fr.paris.lutece.plugins.myportal.modules.rss.business.RssConfDAO" />
+    <bean id="myportal-rss.categoryDAO"       class="fr.paris.lutece.plugins.myportal.modules.rss.business.CategoryDAO" />
 
 </beans>
