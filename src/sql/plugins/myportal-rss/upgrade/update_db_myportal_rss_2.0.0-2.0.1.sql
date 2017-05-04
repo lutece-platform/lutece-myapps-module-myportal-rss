@@ -1,4 +1,4 @@
-CREATE TABLE myportal_rss_advanced_conf (
+CREATE TABLE IF NOT EXISTS myportal_rss_advanced_conf (
 id_rss_conf int(6) NOT NULL,
 attributeuser varchar(50) default '' NOT NULL,
 attributevalue varchar(50) default '' NOT NULL,
@@ -7,7 +7,7 @@ idcategory int(11) default '0' NOT NULL,
 PRIMARY KEY (id_rss_conf)
 );
 
-CREATE TABLE myportal_rss_category (
+CREATE TABLE IF NOT EXISTS myportal_rss_category (
 id_category int(6) NOT NULL,
 title varchar(50) default '' NOT NULL,
 PRIMARY KEY (id_category)
