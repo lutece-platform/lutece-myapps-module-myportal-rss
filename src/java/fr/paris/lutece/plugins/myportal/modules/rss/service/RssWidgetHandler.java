@@ -36,6 +36,8 @@ package fr.paris.lutece.plugins.myportal.modules.rss.service;
 import fr.paris.lutece.plugins.myportal.business.Widget;
 import fr.paris.lutece.plugins.myportal.service.handler.WidgetHandler;
 import fr.paris.lutece.portal.service.security.LuteceUser;
+import fr.paris.lutece.portal.service.util.AppPropertiesService;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -45,6 +47,9 @@ public class RssWidgetHandler implements WidgetHandler
 {
     String NAME = "rss";
     String DESCRIPTION = "RSS widget";
+    private static final String PROPERTY_STYLESHEET_ID = "myportal-rss.stylesheet.id";
+    private static final int ID_XSL = AppPropertiesService.getPropertyInt( PROPERTY_STYLESHEET_ID , 0 );
+
 
 
     /**
@@ -68,7 +73,7 @@ public class RssWidgetHandler implements WidgetHandler
      */
     public String renderWidget( Widget widget, LuteceUser user, HttpServletRequest request)
     {
-        return RssWidgetService.instance().getRssFeed( widget.getConfigData() );
+        return RssWidgetService.instance().getRssFeed( widget.getConfigData(), ID_XSL );
     }
 
     /**

@@ -48,13 +48,13 @@ public final class RssConfDAO implements IRssConfDAO
 {
     // Constants
     private static final String SQL_QUERY_NEW_PK = "SELECT max( id_rss_conf ) FROM myportal_rss_advanced_conf";
-    private static final String SQL_QUERY_SELECT = "SELECT id_rss_conf, attributeUser, attributeValue, url, idCategory FROM myportal_rss_advanced_conf WHERE id_rss_conf = ?";
-    private static final String SQL_QUERY_INSERT = "INSERT INTO myportal_rss_advanced_conf ( id_rss_conf, attributeUser, attributeValue, url, idCategory ) VALUES ( ?, ?, ?, ?, ? ) ";
+    private static final String SQL_QUERY_SELECT = "SELECT id_rss_conf, attributeUser, attributeValue, url, idCategory, idStyleSheet FROM myportal_rss_advanced_conf WHERE id_rss_conf = ?";
+    private static final String SQL_QUERY_INSERT = "INSERT INTO myportal_rss_advanced_conf ( id_rss_conf, attributeUser, attributeValue, url, idCategory, idStyleSheet ) VALUES (?, ?, ?, ?, ?, ? ) ";
     private static final String SQL_QUERY_DELETE = "DELETE FROM myportal_rss_advanced_conf WHERE id_rss_conf = ? ";
-    private static final String SQL_QUERY_UPDATE = "UPDATE myportal_rss_advanced_conf SET id_rss_conf = ?, attributeUser = ?, attributeValue = ?, url = ?, idCategory = ? WHERE id_rss_conf = ?";
-    private static final String SQL_QUERY_SELECTALL = "SELECT id_rss_conf, attributeUser, attributeValue, url, idCategory FROM myportal_rss_advanced_conf";
+    private static final String SQL_QUERY_UPDATE = "UPDATE myportal_rss_advanced_conf SET id_rss_conf = ?, attributeUser = ?, attributeValue = ?, url = ?, idCategory = ?, idStyleSheet = ? WHERE id_rss_conf = ?";
+    private static final String SQL_QUERY_SELECTALL = "SELECT id_rss_conf, attributeUser, attributeValue, url, idCategory, idStyleSheet FROM myportal_rss_advanced_conf";
     private static final String SQL_QUERY_SELECTALL_ID = "SELECT id_rss_conf FROM myportal_rss_advanced_conf";
-    private static final String SQL_QUERY_SELECT_BY_CATEGORY = "SELECT id_rss_conf, attributeUser, attributeValue, url, idCategory FROM myportal_rss_advanced_conf WHERE  idCategory = ?";
+    private static final String SQL_QUERY_SELECT_BY_CATEGORY = "SELECT id_rss_conf, attributeUser, attributeValue, url, idCategory, idStyleSheet FROM myportal_rss_advanced_conf WHERE  idCategory = ?";
 
     /**
      * Generates a new primary key
@@ -91,7 +91,8 @@ public final class RssConfDAO implements IRssConfDAO
         daoUtil.setString( nIndex++ , rssConf.getAttributeValue( ) );
         daoUtil.setString( nIndex++ , rssConf.getUrl( ) );
         daoUtil.setInt( nIndex++ , rssConf.getIdCategory( ) );
-
+        daoUtil.setInt( nIndex++ , rssConf.getIdStyleSheet( ) );
+        
         daoUtil.executeUpdate( );
         daoUtil.free( );
     }
@@ -117,6 +118,8 @@ public final class RssConfDAO implements IRssConfDAO
             rssConf.setAttributeValue( daoUtil.getString( nIndex++ ) );
             rssConf.setUrl( daoUtil.getString( nIndex++ ) );
             rssConf.setIdCategory( daoUtil.getInt( nIndex++ ) );
+            rssConf.setIdStyleSheet( daoUtil.getInt( nIndex++ ) );
+
         }
 
         daoUtil.free( );
@@ -149,6 +152,8 @@ public final class RssConfDAO implements IRssConfDAO
         daoUtil.setString( nIndex++ , rssConf.getAttributeValue( ) );
         daoUtil.setString( nIndex++ , rssConf.getUrl( ) );
         daoUtil.setInt( nIndex++ , rssConf.getIdCategory( ) );
+        daoUtil.setInt( nIndex++ , rssConf.getIdStyleSheet( ) );
+
         daoUtil.setInt( nIndex , rssConf.getId( ) );
 
         daoUtil.executeUpdate( );
@@ -175,6 +180,8 @@ public final class RssConfDAO implements IRssConfDAO
             rssConf.setAttributeValue( daoUtil.getString( nIndex++ ) );
             rssConf.setUrl( daoUtil.getString( nIndex++ ) );
             rssConf.setIdCategory( daoUtil.getInt( nIndex++ ) );
+            rssConf.setIdStyleSheet( daoUtil.getInt( nIndex++ ) );
+
 
             rssConfList.add( rssConf );
         }
@@ -244,6 +251,8 @@ public final class RssConfDAO implements IRssConfDAO
             rssConf.setAttributeValue( daoUtil.getString( nIndex++ ) );
             rssConf.setUrl( daoUtil.getString( nIndex++ ) );
             rssConf.setIdCategory( daoUtil.getInt( nIndex++ ) );
+            rssConf.setIdStyleSheet( daoUtil.getInt( nIndex++ ) );
+
 
             rssConfList.add( rssConf );
         }

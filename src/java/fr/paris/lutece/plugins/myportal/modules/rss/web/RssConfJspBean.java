@@ -36,6 +36,8 @@
 import fr.paris.lutece.plugins.myportal.modules.rss.business.CategoryHome;
 import fr.paris.lutece.plugins.myportal.modules.rss.business.RssConf;
 import fr.paris.lutece.plugins.myportal.modules.rss.business.RssConfHome;
+import fr.paris.lutece.portal.business.stylesheet.StyleSheet;
+import fr.paris.lutece.portal.business.stylesheet.StyleSheetHome;
 import fr.paris.lutece.portal.service.message.AdminMessage;
 import fr.paris.lutece.portal.service.message.AdminMessageService;
 import fr.paris.lutece.portal.util.mvc.admin.annotations.Controller;
@@ -71,6 +73,7 @@ public class RssConfJspBean extends ManageRssJspBean
     private static final String MARK_RSSCONF_LIST = "rssconf_list";
     private static final String MARK_RSSCONF = "rssconf";
     private static final String MARK_CATEGORY_LIST = "category_list";
+    private static final String MARK_STYLE_SHEET = "style_sheet_list";
     
     private static final String JSP_MANAGE_RSSCONFS = "jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp";
 
@@ -127,6 +130,7 @@ public class RssConfJspBean extends ManageRssJspBean
         _rssconf = ( _rssconf != null ) ? _rssconf : new RssConf(  );
 
         Map<String, Object> model = getModel(  );
+        model.put(MARK_STYLE_SHEET, (List<StyleSheet>) StyleSheetHome.getStyleSheetList( -1 ));
         model.put( MARK_RSSCONF, _rssconf );
         model.put(MARK_CATEGORY_LIST, CategoryHome.getCategorysReferenceList());
         return getPage( PROPERTY_PAGE_TITLE_CREATE_RSSCONF, TEMPLATE_CREATE_RSSCONF, model );
@@ -207,6 +211,7 @@ public class RssConfJspBean extends ManageRssJspBean
         }
 
         Map<String, Object> model = getModel(  );
+        model.put(MARK_STYLE_SHEET, (List<StyleSheet>) StyleSheetHome.getStyleSheetList( -1 ));
         model.put( MARK_RSSCONF, _rssconf );
         model.put(MARK_CATEGORY_LIST, CategoryHome.getCategorysReferenceList());
 

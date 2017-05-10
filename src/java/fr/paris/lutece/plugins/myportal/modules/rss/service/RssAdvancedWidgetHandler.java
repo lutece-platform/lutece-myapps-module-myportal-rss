@@ -41,7 +41,6 @@ import fr.paris.lutece.plugins.myportal.modules.rss.business.CategoryHome;
 import fr.paris.lutece.plugins.myportal.modules.rss.business.RssConf;
 import fr.paris.lutece.plugins.myportal.modules.rss.business.RssConfHome;
 import fr.paris.lutece.plugins.myportal.service.handler.WidgetHandler;
-import fr.paris.lutece.portal.service.prefs.UserPreferencesService;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
 
@@ -80,6 +79,7 @@ public class RssAdvancedWidgetHandler implements WidgetHandler
     public String renderWidget( Widget widget, LuteceUser user, HttpServletRequest request)
     {
     	String rssURL= StringUtils.EMPTY;
+    	int nIdXsl= 0;
     	user = SecurityService.getInstance().getRegisteredUser(request);       
 
     	if( user!= null){
@@ -87,20 +87,20 @@ public class RssAdvancedWidgetHandler implements WidgetHandler
 	    	Category category= CategoryHome.findByTitle(widget.getConfigData()); 	
 	    	List<RssConf> rssConfList= RssConfHome.getRssConfsList(category.getId( ));
 	    	String strUserInfo = user.getUserInfo(rssConfList.get(0).getAttributeUser());
-	    	//String strUserInfo = UserPreferencesService.instance( ).get( user.getName( ), rssConfList.get(0).getAttributeUser(), StringUtils.EMPTY);
 	    	
 	    	for(RssConf rssConf:rssConfList){
 	    		
 	    		if(rssConf.getAttributeValue( ).equals(strUserInfo)){
 	    			
 	    			rssURL= rssConf.getUrl();
+	    			nIdXsl= rssConf.getIdStyleSheet( );
 	    			break;
 	    		}
 	    		
 	    	}
 	    	}
     	
-        return RssWidgetService.instance().getRssFeed( rssURL );
+        return RssWidgetService.instance().getRssFeed( rssURL, nIdXsl );
     }
 
     /**

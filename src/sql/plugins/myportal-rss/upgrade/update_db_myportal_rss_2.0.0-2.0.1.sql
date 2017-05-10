@@ -4,6 +4,8 @@ attributeuser varchar(50) default '' NOT NULL,
 attributevalue varchar(50) default '' NOT NULL,
 url varchar(255) default '' NOT NULL,
 idcategory int(11) default '0' NOT NULL,
+idStyleSheet int(11),
+
 PRIMARY KEY (id_rss_conf)
 );
 

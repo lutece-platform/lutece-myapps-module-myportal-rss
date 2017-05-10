@@ -51,8 +51,6 @@ public class RssWidgetService extends AbstractCacheableService
 
     private static final String SERVICE_NAME = "RSS Widget Cache Service";
     private static final String PROPERTY_ERROR_LOADING_FEED = "myportal-rss.message.errorLoadingFeed";
-    private static final String PROPERTY_STYLESHEET_ID = "myportal-rss.stylesheet.id";
-    private static final int ID_XSL = AppPropertiesService.getPropertyInt( PROPERTY_STYLESHEET_ID , 0 );
 
     private static RssWidgetService _singleton = new RssWidgetService();
 
@@ -74,7 +72,7 @@ public class RssWidgetService extends AbstractCacheableService
         return _singleton;
     }
 
-    public String getRssFeed(String strUrl)
+    public String getRssFeed(String strUrl, int idXSL )
     {
         String strRss = (String) getFromCache(strUrl);
         if (strRss == null)
@@ -86,7 +84,7 @@ public class RssWidgetService extends AbstractCacheableService
                 return AppPropertiesService.getProperty( PROPERTY_ERROR_LOADING_FEED);
             }
             XmlTransformerService xmlTransformerService = new XmlTransformerService(  );
-            strRss = xmlTransformerService.transformBySourceWithXslCache( strFeed, getRssXsl(),  new HashMap<String, String>() );
+            strRss = xmlTransformerService.transformBySourceWithXslCache( strFeed, getRssXsl( idXSL ),  new HashMap<String, String>() );
             putInCache(strUrl, strRss );
         }
         return strRss;
@@ -111,12 +109,12 @@ public class RssWidgetService extends AbstractCacheableService
         return strContent;
     }
 
-    StyleSheet getRssXsl()
+    StyleSheet getRssXsl( int idXSL )
     {
-        StyleSheet xsl = StyleSheetHome.findByPrimaryKey( ID_XSL );
+        StyleSheet xsl = StyleSheetHome.findByPrimaryKey( idXSL );
         if( xsl == null )
         {
-            AppLogService.error("Error loading Widget XSL stylesheet with the ID : " + ID_XSL);
+            AppLogService.error("Error loading Widget XSL stylesheet with the ID : " + idXSL);
         }
         return xsl;
     }

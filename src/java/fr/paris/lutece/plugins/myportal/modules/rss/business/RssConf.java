@@ -59,6 +59,8 @@ public class RssConf implements Serializable
     private String _strUrl;
     
     private int _nIdCategory;
+    
+    private int _nIdStyleSheet;
 
     /**
      * Returns the Id
@@ -148,5 +150,23 @@ public class RssConf implements Serializable
     public void setIdCategory( int nIdCategory )
     {
         _nIdCategory = nIdCategory;
+    }
+
+    /**
+     * Returns the IdStyleSheet
+     * @return The IdStyleSheet
+     */
+    public int getIdStyleSheet( )
+    {
+        return _nIdStyleSheet;
+    }
+
+    /**
+     * Sets the IdStyleSheet
+     * @param nIdStyleSheet The IdStyleSheet
+     */ 
+    public void setIdStyleSheet( int nIdStyleSheet )
+    {
+        _nIdStyleSheet = nIdStyleSheet;
     }
 }
