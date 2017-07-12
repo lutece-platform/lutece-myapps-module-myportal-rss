@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><plug-in>
+<?xml version="1.0" encoding="UTF-8"?><plug-in>
     <name>myportal-rss</name>
     <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.0.1</version>
     <documentation/>
     <installation/>
     <changes/>
@@ -20,7 +20,7 @@
             <feature-description>module.myportal.rss.adminFeature.ManageRss.description</feature-description>
             <feature-level>0</feature-level>
             <feature-url>jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp</feature-url>
-            <feature-icon-url></feature-icon-url>
+            <feature-icon-url/>
       </admin-feature>
     </admin-features>    
 </plug-in>
