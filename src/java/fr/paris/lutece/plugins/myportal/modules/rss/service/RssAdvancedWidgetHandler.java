@@ -90,7 +90,7 @@ public class RssAdvancedWidgetHandler implements WidgetHandler
 	    	
 	    	for(RssConf rssConf:rssConfList){
 	    		
-	    		if(rssConf.getAttributeValue( ).equals(strUserInfo)){
+	    		if(rssConf.getAttributeValue( ).equals(strUserInfo) || rssConf.getAttributeUser( ).isEmpty( )){
 	    			
 	    			rssURL= rssConf.getUrl();
 	    			nIdXsl= rssConf.getIdStyleSheet( );

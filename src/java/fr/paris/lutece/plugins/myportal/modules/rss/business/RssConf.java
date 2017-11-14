@@ -47,11 +47,9 @@ public class RssConf implements Serializable
     // Variables declarations 
     private int _nId;
     
-    @NotEmpty( message = "#i18n{module.myportal.rss.validation.rssconf.AttributeUser.notEmpty}" )
     @Size( max = 50 , message = "#i18n{module.myportal.rss.validation.rssconf.AttributeUser.size}" ) 
     private String _strAttributeUser;
     
-    @NotEmpty( message = "#i18n{module.myportal.rss.validation.rssconf.AttributeValue.notEmpty}" )
     @Size( max = 50 , message = "#i18n{module.myportal.rss.validation.rssconf.AttributeValue.size}" ) 
     private String _strAttributeValue;
     
