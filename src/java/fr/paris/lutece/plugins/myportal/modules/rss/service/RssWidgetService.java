@@ -46,7 +46,7 @@ import java.util.HashMap;
 /**
  * Rss Widget Service
  */
-public class RssWidgetService extends AbstractCacheableService
+public class RssWidgetService 
 {
 
     private static final String SERVICE_NAME = "RSS Widget Cache Service";
@@ -74,19 +74,14 @@ public class RssWidgetService extends AbstractCacheableService
 
     public String getRssFeed(String strUrl, int idXSL )
     {
-        String strRss = (String) getFromCache(strUrl);
-        if (strRss == null)
+        String strFeed = fetchRssFeed( strUrl );
+        if( strFeed == null )
         {
-            String strFeed = fetchRssFeed( strUrl );
-            if( strFeed == null )
-            {
-                AppLogService.error("Error fetching url : " + strUrl);
-                return AppPropertiesService.getProperty( PROPERTY_ERROR_LOADING_FEED);
-            }
-            XmlTransformerService xmlTransformerService = new XmlTransformerService(  );
-            strRss = xmlTransformerService.transformBySourceWithXslCache( strFeed, getRssXsl( idXSL ),  new HashMap<String, String>() );
-            putInCache(strUrl, strRss );
+            AppLogService.error("Error fetching url : " + strUrl);
+            return AppPropertiesService.getProperty( PROPERTY_ERROR_LOADING_FEED);
         }
+        XmlTransformerService xmlTransformerService = new XmlTransformerService(  );
+        String strRss = xmlTransformerService.transformBySourceWithXslCache( strFeed, getRssXsl( idXSL ),  new HashMap<String, String>() );
         return strRss;
     }
 
