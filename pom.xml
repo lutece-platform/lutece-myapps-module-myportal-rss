@@ -9,7 +9,7 @@
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>module-myportal-rss</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.2</version>
     <name>Lutece myportal rss module</name>
     <repositories>
         <repository>
@@ -49,6 +49,6 @@
         <connection>scm:git:https://github.com/lutece-platform/lutece-myapps-module-myportal-rss.git</connection>
         <developerConnection>scm:git:https://github.com/lutece-platform/lutece-myapps-module-myportal-rss.git</developerConnection>
         <url>https://github.com/lutece-platform/lutece-myapps-module-myportal-rss.git</url>
-      <tag>HEAD</tag>
+      <tag>module-myportal-rss-2.0.2</tag>
   </scm>
 </project>
