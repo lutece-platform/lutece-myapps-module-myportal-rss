@@ -108,6 +108,6 @@ public class RssAdvancedWidgetHandler implements WidgetHandler
      */
 	public boolean isCustomizable(  )
 	{
-		return false;
+		return true;
 	}
 }
