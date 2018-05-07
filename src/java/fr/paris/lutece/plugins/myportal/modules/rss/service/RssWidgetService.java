@@ -50,7 +50,7 @@ public class RssWidgetService
 {
 
     private static final String SERVICE_NAME = "RSS Widget Cache Service";
-    private static final String PROPERTY_ERROR_LOADING_FEED = "myportal-rss.message.errorLoadingFeed";
+    public static final String PROPERTY_ERROR_LOADING_FEED = "myportal-rss.message.errorLoadingFeed";
 
     private static RssWidgetService _singleton = new RssWidgetService();
 

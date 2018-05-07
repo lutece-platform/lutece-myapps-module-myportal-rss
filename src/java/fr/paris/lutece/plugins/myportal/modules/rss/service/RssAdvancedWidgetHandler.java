@@ -43,6 +43,8 @@ import fr.paris.lutece.plugins.myportal.modules.rss.business.RssConfHome;
 import fr.paris.lutece.plugins.myportal.service.handler.WidgetHandler;
 import fr.paris.lutece.portal.service.security.LuteceUser;
 import fr.paris.lutece.portal.service.security.SecurityService;
+import fr.paris.lutece.portal.service.util.AppLogService;
+import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -78,7 +80,7 @@ public class RssAdvancedWidgetHandler implements WidgetHandler
      */
     public String renderWidget( Widget widget, LuteceUser user, HttpServletRequest request)
     {
-    	String rssURL= StringUtils.EMPTY;
+    	String rssURL= null;
     	int nIdXsl= 0;
     	user = SecurityService.getInstance().getRegisteredUser(request);       
 
@@ -98,7 +100,12 @@ public class RssAdvancedWidgetHandler implements WidgetHandler
 	    		}
 	    		
 	    	}
-	    	}
+	    }
+    	if( rssURL == null ||  rssURL.isEmpty( ) ){
+    		
+    		 AppLogService.error("Error fetching url : " + rssURL);
+             return AppPropertiesService.getProperty( RssWidgetService.PROPERTY_ERROR_LOADING_FEED);
+    	}
     	
         return RssWidgetService.instance().getRssFeed( rssURL, nIdXsl );
     }
