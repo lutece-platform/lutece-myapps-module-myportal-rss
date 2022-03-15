@@ -1,18 +1,13 @@
-<#include "managerss_tabs.html" />
-<@tabs2 tab="category" />
-<@box>
-	<@boxHeader title='#i18n{module.myportal.rss.create_category.title}' />
-	<@boxBody>
-    <@tform name='create_category' action='jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp'>
-
-        <@messages errors=errors />
-        <input type="hidden" id="id" name="id"/>
-        
-				<@formGroup labelKey='#i18n{module.myportal.rss.create_category.labelTitle}' helpKey='#i18n{module.myportal.rss.create_category.labelTitle.help}' mandatory=true>
-					<@input type='text' name='title' value='${category.title!\'\'}' />
-				</@formGroup>
-				
-				<@actionButtons button1Name="action_createCategory" button2Name="view_manageCategory"/>
-    </@tform>
-	</@boxBody>
-</@box>
+<#include 'managerss_tabs.html' />
+<@tabs2 tab='category'>
+	<@fieldSet legend='#i18n{module.myportal.rss.create_category.title}'>
+		<@tform name='create_category' action='jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp'>
+			<@messages errors=errors />
+			<@input type='hidden' id='id' name='id'/>
+			<@formGroup labelFor='title' labelKey='#i18n{module.myportal.rss.create_category.labelTitle}' helpKey='#i18n{module.myportal.rss.create_category.labelTitle.help}' mandatory=true>
+				<@input type='text' name='title' value='${category.title!\'\'}' />
+			</@formGroup>
+			<@actionButtons button1Name='action_createCategory' button2Name='view_manageCategory' />
+		</@tform>
+	</@fieldSet>
+</@tabs2>

@@ -1,40 +1,31 @@
-<#include "managerss_tabs.html" />
-<@tabs2 tab="category" />
-
-<@box>
-	<@boxHeader title='#i18n{module.myportal.rss.manage_category.title}' boxTools=true>
-		<@tform class='form-inline pull-right' name='manage_category' action='jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp'>
+<#include 'managerss_tabs.html' />
+<@tabs2 tab='category'>
+	<@fieldSet legend='#i18n{module.myportal.rss.manage_category.title}'>
+		<@tform align='right' name='manage_category' action='jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp'>
 			<@button type='submit' name='view_createCategory' buttonIcon='plus' title='#i18n{module.myportal.rss.manage_category.buttonAdd}' />
 		</@tform>
-	</@boxHeader>
-	<@boxBody>    
-    <@messages infos=infos />
-    <@paginationAdmin paginator=paginator combo=1 />
-    <div class="clearfix"></div>
-    <@table>
-        <tr>
-            <input type="hidden" id="id" name="id"/>
-            <th>#i18n{module.myportal.rss.manage_category.columnTitle}</th>
-            <th>#i18n{portal.util.labelActions}</th>
-        </tr>
-        <@tableHeadBodySeparator />
-            <#list category_list as category >
-        <tr>
-            <input type="hidden" id="id" name="id"/>
-            <td>
-                ${category.title}
-            </td>
-        <td>
-			<@aButton href='jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp?view=modifyCategory&id=${category.id}' title='#i18n{portal.util.labelModify}' buttonIcon='pencil' showTitle=false />
-						
-			<@aButton href='jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp?action=confirmRemoveCategory&id=${category.id}' title='#i18n{portal.util.labelDelete}' buttonIcon='trash' color='btn-danger' showTitle=false />
-
-        </td>
-        </tr>
-        </#list>
-    </@table>
-
-    <@paginationAdmin paginator=paginator />
-
-  </@boxBody>
-</@box>
+		<@messages infos=infos />
+		<@paginationAdmin paginator=paginator combo=1 />
+		<@table>
+			<@tr>
+				<@input type='hidden' id='id' name='id' />
+				<@th>#i18n{module.myportal.rss.manage_category.columnTitle}</@th>
+				<@th>#i18n{portal.util.labelActions}</@th>
+			</@tr>
+			<@tableHeadBodySeparator />
+			<#list category_list as category >
+			<@tr>
+				<@input type='hidden' id='id' name='id' />
+				<@td>
+					${category.title}
+				</@td>
+				<@td>
+					<@aButton href='jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp?view=modifyCategory&id=${category.id}' title='#i18n{portal.util.labelModify}' buttonIcon='pencil' hideTile=['all'] />
+					<@aButton href='jsp/admin/plugins/myportal/modules/rss/ManageCategorys.jsp?action=confirmRemoveCategory&id=${category.id}' title='#i18n{portal.util.labelDelete}' buttonIcon='trash' color='danger' hideTile=['all'] />
+				</@td>
+			</@tr>
+			</#list>
+		</@table>
+		<@paginationAdmin paginator=paginator />
+	</@fieldSet>
+</@tabs2>

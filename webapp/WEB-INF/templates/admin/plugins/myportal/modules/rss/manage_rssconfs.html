@@ -1,56 +1,47 @@
-<#include "managerss_tabs.html" />
-<@tabs2 tab="rssconf" />
-
-<@box>
-	<@boxHeader title='#i18n{module.myportal.rss.manage_rssconfs.title}' boxTools=true>
-		<@tform class='form-inline pull-right' name='manage_rssconf' action='jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp'>
+<#include 'managerss_tabs.html' />
+<@tabs2 tab='rssconf'>
+	<@fieldSet legend='#i18n{module.myportal.rss.manage_rssconfs.title}'>
+		<@tform align='right' name='manage_rssconf' action='jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp'>
 			<@button type='submit' name='view_createRssConf' buttonIcon='plus' title='#i18n{module.myportal.rss.manage_rssconfs.buttonAdd}' />
 		</@tform>
-	</@boxHeader>
-	<@boxBody>    
-    <@messages infos=infos />
-    <@paginationAdmin paginator=paginator combo=1 />
-    <div class="clearfix"></div>
-    <@table>
-        <tr>
-            <input type="hidden" id="id" name="id"/>
-            <th>#i18n{module.myportal.rss.manage_rssconfs.columnAttributeUser}</th>
-            <th>#i18n{module.myportal.rss.manage_rssconfs.columnAttributeValue}</th>
-            <th>#i18n{module.myportal.rss.manage_rssconfs.columnUrl}</th>
-            <th>#i18n{module.myportal.rss.manage_rssconfs.columnIdCategory}</th>
-            <th>#i18n{portal.util.labelActions}</th>
-        </tr>
-        <@tableHeadBodySeparator />
-            <#list rssconf_list as rssconf >
-        <tr>
-            <input type="hidden" id="id" name="id"/>
-            <td>
-                ${rssconf.attributeUser}
-            </td>
-            <td>
-                ${rssconf.attributeValue}
-            </td>
-            <td>
-                ${rssconf.url}
-            </td>
-            <td>
-		<#list category_list as category>
-		   <#if rssconf.idCategory?string == category.code?string >
-                 	 ${category.name}
-		   </#if>
-		</#list>
-            </td>
-        <td>
-			<@aButton href='jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp?view=modifyRssConf&id=${rssconf.id}' title='#i18n{portal.util.labelModify}' buttonIcon='pencil' showTitle=false />
-						
-			<@aButton href='jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp?action=confirmRemoveRssConf&id=${rssconf.id}' title='#i18n{portal.util.labelDelete}' buttonIcon='trash' color='btn-danger' showTitle=false />
-
-        </td>
-        </tr>
-        </#list>
-    </@table>
-
-    <@paginationAdmin paginator=paginator />
-
-  </@boxBody>
-</@box>
+		<@messages infos=infos />
+		<@paginationAdmin paginator=paginator combo=1 />
+		<@table>
+			<@tr>
+				<@input type='hidden' id='id' name='id' />
+				<@th>#i18n{module.myportal.rss.manage_rssconfs.columnAttributeUser}</@th>
+				<@th>#i18n{module.myportal.rss.manage_rssconfs.columnAttributeValue}</@th>
+				<@th>#i18n{module.myportal.rss.manage_rssconfs.columnUrl}</@th>
+				<@th>#i18n{module.myportal.rss.manage_rssconfs.columnIdCategory}</@th>
+				<@th>#i18n{portal.util.labelActions}</@th>
+			</@tr>
+			<@tableHeadBodySeparator />
+			<#list rssconf_list as rssconf >
+			<@tr>
+				<@input type='hidden' id='id' name='id' />
+				<@td>
+					${rssconf.attributeUser}
+				</@td>
+				<@td>
+					${rssconf.attributeValue}
+				</@td>
+				<@td>
+					${rssconf.url}
+				</@td>
+				<@td>
+					<#list category_list as category>
+					   <#if rssconf.idCategory?string == category.code?string >
+								 ${category.name}
+					   </#if>
+					</#list>
+				</@td>
+				<@td>
+					<@aButton href='jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp?view=modifyRssConf&id=${rssconf.id}' title='#i18n{portal.util.labelModify}' buttonIcon='edit' hideTile=['all'] />
+					<@aButton href='jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp?action=confirmRemoveRssConf&id=${rssconf.id}' title='#i18n{portal.util.labelDelete}' buttonIcon='trash' color='danger' hideTile=['all'] />
+				</@td>
+			</@tr>
+			</#list>
+		</@table>
+		<@paginationAdmin paginator=paginator />
+	</@fieldSet>
+</@tabs2>

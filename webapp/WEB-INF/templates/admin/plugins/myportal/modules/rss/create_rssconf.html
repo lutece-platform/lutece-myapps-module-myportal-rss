@@ -3,32 +3,29 @@
 <@box>
 	<@boxHeader title='#i18n{module.myportal.rss.create_rssconf.title}' />
 	<@boxBody>
-    <@tform name='create_rssconf' action='jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp'>
-
-        <@messages errors=errors />
-        <input type="hidden" id="id" name="id"/>
-        
-				<@formGroup labelKey='#i18n{module.myportal.rss.create_rssconf.labelAttributeUser}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelAttributeUser.help}' mandatory=false>
-					<@input type='text' name='attributeUser' value='${rssconf.attributeUser!\'\'}' />
-				</@formGroup>
-				<@formGroup labelKey='#i18n{module.myportal.rss.create_rssconf.labelAttributeValue}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelAttributeValue.help}' mandatory=false>
-					<@input type='text' name='attributeValue' value='${rssconf.attributeValue!\'\'}' />
-				</@formGroup>
-				<@formGroup labelKey='#i18n{module.myportal.rss.create_rssconf.labelUrl}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelUrl.help}' mandatory=true>
-					<@input type='text' name='url' value='${rssconf.url!\'\'}' />
-				</@formGroup>
-				<@formGroup labelKey='#i18n{module.myportal.rss.create_rssconf.labelIdCategory}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelIdCategory.help}' mandatory=true>
-					<@comboWithParams name="idCategory" default_value="0" additionalParameters="class=\"input-xxlarge\"" items=category_list />
-				</@formGroup>
-				<@formGroup labelKey='#i18n{module.myportal.rss.create_rssconf.labelIdStyleSheet}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelIdStyleSheet.help}' mandatory=true>
-				<select id="idStyleSheet" name="idStyleSheet" class="input-xxlarge">
+		<@tform name='create_rssconf' action='jsp/admin/plugins/myportal/modules/rss/ManageRssConfs.jsp'>
+			<@messages errors=errors />
+			<@input type='hidden' id='id' name='id' />
+        	<@formGroup labelFor='attributeUser' labelKey='#i18n{module.myportal.rss.create_rssconf.labelAttributeUser}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelAttributeUser.help}'>
+				<@input type='text' name='attributeUser' value='${rssconf.attributeUser!\'\'}' />
+			</@formGroup>
+			<@formGroup labelFor='attributeValue' labelKey='#i18n{module.myportal.rss.create_rssconf.labelAttributeValue}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelAttributeValue.help}'>
+				<@input type='text' name='attributeValue' value='${rssconf.attributeValue!\'\'}' />
+			</@formGroup>
+			<@formGroup labelFor='url' labelKey='#i18n{module.myportal.rss.create_rssconf.labelUrl}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelUrl.help}' mandatory=true>
+				<@input type='text' name='url' value='${rssconf.url!\'\'}' />
+			</@formGroup>
+			<@formGroup labelFor='idCategory' labelKey='#i18n{module.myportal.rss.create_rssconf.labelIdCategory}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelIdCategory.help}' mandatory=true>
+				<@select name='idCategory' default_value='0' items=category_list />
+			</@formGroup>
+			<@formGroup labelFor='idStyleSheet' labelKey='#i18n{module.myportal.rss.create_rssconf.labelIdStyleSheet}' helpKey='#i18n{module.myportal.rss.create_rssconf.labelIdStyleSheet.help}' mandatory=true>
+				<@select id='idStyleSheet' name='idStyleSheet'>
 					<#list style_sheet_list as styleSheet>
-   					<option value="${styleSheet.id}">${styleSheet.description}</option>
+					<option value="${styleSheet.id}">${styleSheet.description}</option>
 					</#list>
-				</select>
-				</@formGroup>
-				
-				<@actionButtons button1Name="action_createRssConf" button2Name="view_manageRssConf"/>
-    </@tform>
+				</@select>
+			</@formGroup>
+			<@actionButtons button1Name="action_createRssConf" button2Name="view_manageRssConf"/>
+		</@tform>
 	</@boxBody>
 </@box>
