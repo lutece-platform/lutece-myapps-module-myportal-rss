@@ -31,7 +31,7 @@
  *
  * License 1.0
  */
-  package fr.paris.lutece.plugins.myportal.modules.rss.web;
+package fr.paris.lutece.plugins.myportal.modules.rss.web;
 
 import fr.paris.lutece.plugins.myportal.modules.rss.business.CategoryHome;
 import fr.paris.lutece.plugins.myportal.modules.rss.business.RssConf;
@@ -56,6 +56,10 @@ import javax.servlet.http.HttpServletRequest;
 @Controller( controllerJsp = "ManageRssConfs.jsp", controllerPath = "jsp/admin/plugins/myportal/modules/rss/", right = "MYPORTAL_RSS_MANAGEMENT" )
 public class RssConfJspBean extends ManageRssJspBean
 {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     // Templates
     private static final String TEMPLATE_MANAGE_RSSCONFS = "/admin/plugins/myportal/modules/rss/manage_rssconfs.html";
     private static final String TEMPLATE_CREATE_RSSCONF = "/admin/plugins/myportal/modules/rss/create_rssconf.html";

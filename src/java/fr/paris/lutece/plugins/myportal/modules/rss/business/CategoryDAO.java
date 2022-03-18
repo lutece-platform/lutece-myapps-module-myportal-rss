@@ -137,15 +137,16 @@ public final class CategoryDAO implements ICategoryDAO
     @Override
     public void store( Category category, Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-        int nIndex = 1;
-        
-        daoUtil.setInt( nIndex++ , category.getId( ) );
-        daoUtil.setString( nIndex++ , category.getTitle( ) );
-        daoUtil.setInt( nIndex , category.getId( ) );
-
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin ) )
+        {
+            int nIndex = 1;
+            
+            daoUtil.setInt( nIndex++ , category.getId( ) );
+            daoUtil.setString( nIndex++ , category.getTitle( ) );
+            daoUtil.setInt( nIndex , category.getId( ) );
+    
+            daoUtil.executeUpdate( );
+        }
     }
 
     /**
@@ -154,22 +155,22 @@ public final class CategoryDAO implements ICategoryDAO
     @Override
     public List<Category> selectCategorysList( Plugin plugin )
     {
-        List<Category> categoryList = new ArrayList<Category>(  );
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
-
-        while ( daoUtil.next(  ) )
+        List<Category> categoryList = new ArrayList<>(  );
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )
         {
-            Category category = new Category(  );
-            int nIndex = 1;
-            
-            category.setId( daoUtil.getInt( nIndex++ ) );
-            category.setTitle( daoUtil.getString( nIndex++ ) );
-
-            categoryList.add( category );
+            daoUtil.executeQuery(  );
+    
+            while ( daoUtil.next(  ) )
+            {
+                Category category = new Category(  );
+                int nIndex = 1;
+                
+                category.setId( daoUtil.getInt( nIndex++ ) );
+                category.setTitle( daoUtil.getString( nIndex++ ) );
+    
+                categoryList.add( category );
+            }
         }
-
-        daoUtil.free( );
         return categoryList;
     }
     
@@ -179,16 +180,16 @@ public final class CategoryDAO implements ICategoryDAO
     @Override
     public List<Integer> selectIdCategorysList( Plugin plugin )
     {
-        List<Integer> categoryList = new ArrayList<Integer>( );
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-        daoUtil.executeQuery(  );
-
-        while ( daoUtil.next(  ) )
+        List<Integer> categoryList = new ArrayList<>( );
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin ) )
         {
-            categoryList.add( daoUtil.getInt( 1 ) );
+            daoUtil.executeQuery(  );
+    
+            while ( daoUtil.next(  ) )
+            {
+                categoryList.add( daoUtil.getInt( 1 ) );
+            }
         }
-
-        daoUtil.free( );
         return categoryList;
     }
     
@@ -199,15 +200,15 @@ public final class CategoryDAO implements ICategoryDAO
     public ReferenceList selectCategorysReferenceList( Plugin plugin )
     {
         ReferenceList categoryList = new ReferenceList();
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
-
-        while ( daoUtil.next(  ) )
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )
         {
-            categoryList.addItem( daoUtil.getInt( 1 ) , daoUtil.getString( 2 ) );
+            daoUtil.executeQuery(  );
+    
+            while ( daoUtil.next(  ) )
+            {
+                categoryList.addItem( daoUtil.getInt( 1 ) , daoUtil.getString( 2 ) );
+            }
         }
-
-        daoUtil.free( );
         return categoryList;
     }
     /**
@@ -216,21 +217,21 @@ public final class CategoryDAO implements ICategoryDAO
    @Override
    public Category load( String strTitle, Plugin plugin )
    {
-       DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_TITLE, plugin );
-       daoUtil.setString( 1 , strTitle );
-       daoUtil.executeQuery( );
        Category category = null;
-
-       if ( daoUtil.next( ) )
+       try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_TITLE, plugin ) )
        {
-           category = new Category();
-           int nIndex = 1;
-           
-           category.setId( daoUtil.getInt( nIndex++ ) );
-           category.setTitle( daoUtil.getString( nIndex++ ) );
+           daoUtil.setString( 1 , strTitle );
+           daoUtil.executeQuery( );
+    
+           if ( daoUtil.next( ) )
+           {
+               category = new Category();
+               int nIndex = 1;
+               
+               category.setId( daoUtil.getInt( nIndex++ ) );
+               category.setTitle( daoUtil.getString( nIndex++ ) );
+           }
        }
-
-       daoUtil.free( );
        return category;
    }
 

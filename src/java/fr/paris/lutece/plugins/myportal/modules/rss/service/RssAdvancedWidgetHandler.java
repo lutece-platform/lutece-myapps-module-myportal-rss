@@ -48,8 +48,6 @@ import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
-
 /**
  * RSS Widget Handler
  */
@@ -103,7 +101,7 @@ public class RssAdvancedWidgetHandler implements WidgetHandler
 	    }
     	if( rssURL == null ||  rssURL.isEmpty( ) ){
     		
-    		 AppLogService.error("Error fetching url : " + rssURL);
+    		 AppLogService.error( "Error fetching url : " + rssURL );
              return AppPropertiesService.getProperty( RssWidgetService.PROPERTY_ERROR_LOADING_FEED);
     	}
     	

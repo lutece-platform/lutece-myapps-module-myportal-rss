@@ -34,7 +34,6 @@
 package fr.paris.lutece.plugins.myportal.modules.rss.business;
 
 import javax.validation.constraints.*;
-import org.hibernate.validator.constraints.*;
 import java.io.Serializable;
 
 /**

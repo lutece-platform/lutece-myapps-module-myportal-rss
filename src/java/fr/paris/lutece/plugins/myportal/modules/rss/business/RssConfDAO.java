@@ -63,16 +63,17 @@ public final class RssConfDAO implements IRssConfDAO
      */
     public int newPrimaryKey( Plugin plugin)
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK , plugin  );
-        daoUtil.executeQuery( );
         int nKey = 1;
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK , plugin  ) )
+        {
+        daoUtil.executeQuery( );
 
         if( daoUtil.next( ) )
         {
             nKey = daoUtil.getInt( 1 ) + 1;
         }
 
-        daoUtil.free();
+        }
         return nKey;
     }
 
@@ -82,19 +83,20 @@ public final class RssConfDAO implements IRssConfDAO
     @Override
     public void insert( RssConf rssConf, Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin );
-        rssConf.setId( newPrimaryKey( plugin ) );
-        int nIndex = 1;
-        
-        daoUtil.setInt( nIndex++ , rssConf.getId( ) );
-        daoUtil.setString( nIndex++ , rssConf.getAttributeUser( ) );
-        daoUtil.setString( nIndex++ , rssConf.getAttributeValue( ) );
-        daoUtil.setString( nIndex++ , rssConf.getUrl( ) );
-        daoUtil.setInt( nIndex++ , rssConf.getIdCategory( ) );
-        daoUtil.setInt( nIndex++ , rssConf.getIdStyleSheet( ) );
-        
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_INSERT, plugin ) )
+        {
+            rssConf.setId( newPrimaryKey( plugin ) );
+            int nIndex = 1;
+            
+            daoUtil.setInt( nIndex++ , rssConf.getId( ) );
+            daoUtil.setString( nIndex++ , rssConf.getAttributeUser( ) );
+            daoUtil.setString( nIndex++ , rssConf.getAttributeValue( ) );
+            daoUtil.setString( nIndex++ , rssConf.getUrl( ) );
+            daoUtil.setInt( nIndex++ , rssConf.getIdCategory( ) );
+            daoUtil.setInt( nIndex++ , rssConf.getIdStyleSheet( ) );
+            
+            daoUtil.executeUpdate( );
+        }
     }
 
     /**
@@ -103,26 +105,27 @@ public final class RssConfDAO implements IRssConfDAO
     @Override
     public RssConf load( int nKey, Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin );
-        daoUtil.setInt( 1 , nKey );
-        daoUtil.executeQuery( );
         RssConf rssConf = null;
-
-        if ( daoUtil.next( ) )
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT, plugin ) )
         {
-            rssConf = new RssConf();
-            int nIndex = 1;
-            
-            rssConf.setId( daoUtil.getInt( nIndex++ ) );
-            rssConf.setAttributeUser( daoUtil.getString( nIndex++ ) );
-            rssConf.setAttributeValue( daoUtil.getString( nIndex++ ) );
-            rssConf.setUrl( daoUtil.getString( nIndex++ ) );
-            rssConf.setIdCategory( daoUtil.getInt( nIndex++ ) );
-            rssConf.setIdStyleSheet( daoUtil.getInt( nIndex++ ) );
+            daoUtil.setInt( 1 , nKey );
+            daoUtil.executeQuery( );
+    
+            if ( daoUtil.next( ) )
+            {
+                rssConf = new RssConf();
+                int nIndex = 1;
+                
+                rssConf.setId( daoUtil.getInt( nIndex++ ) );
+                rssConf.setAttributeUser( daoUtil.getString( nIndex++ ) );
+                rssConf.setAttributeValue( daoUtil.getString( nIndex++ ) );
+                rssConf.setUrl( daoUtil.getString( nIndex++ ) );
+                rssConf.setIdCategory( daoUtil.getInt( nIndex++ ) );
+                rssConf.setIdStyleSheet( daoUtil.getInt( nIndex++ ) );
+    
+            }
 
         }
-
-        daoUtil.free( );
         return rssConf;
     }
 
@@ -132,10 +135,11 @@ public final class RssConfDAO implements IRssConfDAO
     @Override
     public void delete( int nKey, Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin );
-        daoUtil.setInt( 1 , nKey );
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_DELETE, plugin ) )
+        {
+            daoUtil.setInt( 1 , nKey );
+            daoUtil.executeUpdate( );
+        }
     }
 
     /**
@@ -144,20 +148,21 @@ public final class RssConfDAO implements IRssConfDAO
     @Override
     public void store( RssConf rssConf, Plugin plugin )
     {
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin );
-        int nIndex = 1;
-        
-        daoUtil.setInt( nIndex++ , rssConf.getId( ) );
-        daoUtil.setString( nIndex++ , rssConf.getAttributeUser( ) );
-        daoUtil.setString( nIndex++ , rssConf.getAttributeValue( ) );
-        daoUtil.setString( nIndex++ , rssConf.getUrl( ) );
-        daoUtil.setInt( nIndex++ , rssConf.getIdCategory( ) );
-        daoUtil.setInt( nIndex++ , rssConf.getIdStyleSheet( ) );
-
-        daoUtil.setInt( nIndex , rssConf.getId( ) );
-
-        daoUtil.executeUpdate( );
-        daoUtil.free( );
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_UPDATE, plugin ) )
+        {
+            int nIndex = 1;
+            
+            daoUtil.setInt( nIndex++ , rssConf.getId( ) );
+            daoUtil.setString( nIndex++ , rssConf.getAttributeUser( ) );
+            daoUtil.setString( nIndex++ , rssConf.getAttributeValue( ) );
+            daoUtil.setString( nIndex++ , rssConf.getUrl( ) );
+            daoUtil.setInt( nIndex++ , rssConf.getIdCategory( ) );
+            daoUtil.setInt( nIndex++ , rssConf.getIdStyleSheet( ) );
+    
+            daoUtil.setInt( nIndex , rssConf.getId( ) );
+    
+            daoUtil.executeUpdate( );
+        }
     }
 
     /**
@@ -166,27 +171,28 @@ public final class RssConfDAO implements IRssConfDAO
     @Override
     public List<RssConf> selectRssConfsList( Plugin plugin )
     {
-        List<RssConf> rssConfList = new ArrayList<RssConf>(  );
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
-
-        while ( daoUtil.next(  ) )
+        List<RssConf> rssConfList = new ArrayList<>(  );
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )
         {
-            RssConf rssConf = new RssConf(  );
-            int nIndex = 1;
-            
-            rssConf.setId( daoUtil.getInt( nIndex++ ) );
-            rssConf.setAttributeUser( daoUtil.getString( nIndex++ ) );
-            rssConf.setAttributeValue( daoUtil.getString( nIndex++ ) );
-            rssConf.setUrl( daoUtil.getString( nIndex++ ) );
-            rssConf.setIdCategory( daoUtil.getInt( nIndex++ ) );
-            rssConf.setIdStyleSheet( daoUtil.getInt( nIndex++ ) );
+            daoUtil.executeQuery(  );
+    
+            while ( daoUtil.next(  ) )
+            {
+                RssConf rssConf = new RssConf(  );
+                int nIndex = 1;
+                
+                rssConf.setId( daoUtil.getInt( nIndex++ ) );
+                rssConf.setAttributeUser( daoUtil.getString( nIndex++ ) );
+                rssConf.setAttributeValue( daoUtil.getString( nIndex++ ) );
+                rssConf.setUrl( daoUtil.getString( nIndex++ ) );
+                rssConf.setIdCategory( daoUtil.getInt( nIndex++ ) );
+                rssConf.setIdStyleSheet( daoUtil.getInt( nIndex++ ) );
+    
+    
+                rssConfList.add( rssConf );
+            }
 
-
-            rssConfList.add( rssConf );
         }
-
-        daoUtil.free( );
         return rssConfList;
     }
     
@@ -196,16 +202,16 @@ public final class RssConfDAO implements IRssConfDAO
     @Override
     public List<Integer> selectIdRssConfsList( Plugin plugin )
     {
-        List<Integer> rssConfList = new ArrayList<Integer>( );
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin );
-        daoUtil.executeQuery(  );
-
-        while ( daoUtil.next(  ) )
+        List<Integer> rssConfList = new ArrayList<>( );
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL_ID, plugin ) )
         {
-            rssConfList.add( daoUtil.getInt( 1 ) );
+            daoUtil.executeQuery(  );
+    
+            while ( daoUtil.next(  ) )
+            {
+                rssConfList.add( daoUtil.getInt( 1 ) );
+            }
         }
-
-        daoUtil.free( );
         return rssConfList;
     }
     
@@ -216,15 +222,15 @@ public final class RssConfDAO implements IRssConfDAO
     public ReferenceList selectRssConfsReferenceList( Plugin plugin )
     {
         ReferenceList rssConfList = new ReferenceList();
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin );
-        daoUtil.executeQuery(  );
-
-        while ( daoUtil.next(  ) )
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECTALL, plugin ) )
         {
-            rssConfList.addItem( daoUtil.getInt( 1 ) , daoUtil.getString( 2 ) );
+            daoUtil.executeQuery(  );
+    
+            while ( daoUtil.next(  ) )
+            {
+                rssConfList.addItem( daoUtil.getInt( 1 ) , daoUtil.getString( 2 ) );
+            }
         }
-
-        daoUtil.free( );
         return rssConfList;
     }
     
@@ -235,29 +241,29 @@ public final class RssConfDAO implements IRssConfDAO
     public List<RssConf> loadByCategory( int nIdCategory, Plugin plugin )
     {
     	
-        List<RssConf> rssConfList = new ArrayList<RssConf>(  );
-
-        DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_CATEGORY, plugin );
-        daoUtil.setInt( 1 , nIdCategory );
-        daoUtil.executeQuery( );
-
-        while ( daoUtil.next(  ) )
+        List<RssConf> rssConfList = new ArrayList<>(  );
+        try( DAOUtil daoUtil = new DAOUtil( SQL_QUERY_SELECT_BY_CATEGORY, plugin ) )
         {
-            RssConf rssConf = new RssConf(  );
-            int nIndex = 1;
-            
-            rssConf.setId( daoUtil.getInt( nIndex++ ) );
-            rssConf.setAttributeUser( daoUtil.getString( nIndex++ ) );
-            rssConf.setAttributeValue( daoUtil.getString( nIndex++ ) );
-            rssConf.setUrl( daoUtil.getString( nIndex++ ) );
-            rssConf.setIdCategory( daoUtil.getInt( nIndex++ ) );
-            rssConf.setIdStyleSheet( daoUtil.getInt( nIndex++ ) );
+            daoUtil.setInt( 1 , nIdCategory );
+            daoUtil.executeQuery( );
+    
+            while ( daoUtil.next(  ) )
+            {
+                RssConf rssConf = new RssConf(  );
+                int nIndex = 1;
+                
+                rssConf.setId( daoUtil.getInt( nIndex++ ) );
+                rssConf.setAttributeUser( daoUtil.getString( nIndex++ ) );
+                rssConf.setAttributeValue( daoUtil.getString( nIndex++ ) );
+                rssConf.setUrl( daoUtil.getString( nIndex++ ) );
+                rssConf.setIdCategory( daoUtil.getInt( nIndex++ ) );
+                rssConf.setIdStyleSheet( daoUtil.getInt( nIndex++ ) );
+    
+    
+                rssConfList.add( rssConf );
+            }
 
-
-            rssConfList.add( rssConf );
         }
-
-        daoUtil.free( );
         return rssConfList;
     }
 }
