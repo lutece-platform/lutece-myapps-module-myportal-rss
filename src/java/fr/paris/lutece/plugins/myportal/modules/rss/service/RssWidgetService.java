@@ -35,7 +35,6 @@ package fr.paris.lutece.plugins.myportal.modules.rss.service;
 
 import fr.paris.lutece.portal.business.stylesheet.StyleSheet;
 import fr.paris.lutece.portal.business.stylesheet.StyleSheetHome;
-import fr.paris.lutece.portal.service.cache.AbstractCacheableService;
 import fr.paris.lutece.portal.service.html.XmlTransformerService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
@@ -81,8 +80,7 @@ public class RssWidgetService
             return AppPropertiesService.getProperty( PROPERTY_ERROR_LOADING_FEED);
         }
         XmlTransformerService xmlTransformerService = new XmlTransformerService(  );
-        String strRss = xmlTransformerService.transformBySourceWithXslCache( strFeed, getRssXsl( idXSL ),  new HashMap<String, String>() );
-        return strRss;
+        return xmlTransformerService.transformBySourceWithXslCache( strFeed, getRssXsl( idXSL ),  new HashMap<>( ) );
     }
 
     /**
@@ -98,8 +96,10 @@ public class RssWidgetService
         try
         {
             strContent = httpAccess.doGet(strUrl);
-        } catch (HttpAccessException e)
+        }
+        catch ( HttpAccessException e )
         {
+            
         }
         return strContent;
     }
@@ -109,7 +109,7 @@ public class RssWidgetService
         StyleSheet xsl = StyleSheetHome.findByPrimaryKey( idXSL );
         if( xsl == null )
         {
-            AppLogService.error("Error loading Widget XSL stylesheet with the ID : " + idXSL);
+            AppLogService.error( "Error loading Widget XSL stylesheet with the ID : " + idXSL );
         }
         return xsl;
     }

@@ -49,6 +49,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 public abstract class ManageRssJspBean extends MVCAdminJspBean
 {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     // Rights
     public static final String RIGHT_MANAGERSS = "MYPORTAL_RSS_MANAGEMENT";
     

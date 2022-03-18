@@ -52,6 +52,10 @@ import javax.servlet.http.HttpServletRequest;
 @Controller( controllerJsp = "ManageCategorys.jsp", controllerPath = "jsp/admin/plugins/myportal/modules/rss/", right = "MYPORTAL_RSS_MANAGEMENT" )
 public class CategoryJspBean extends ManageRssJspBean
 {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     // Templates
     private static final String TEMPLATE_MANAGE_CATEGORYS = "/admin/plugins/myportal/modules/rss/manage_categorys.html";
     private static final String TEMPLATE_CREATE_CATEGORY = "/admin/plugins/myportal/modules/rss/create_category.html";
